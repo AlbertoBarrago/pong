@@ -1,7 +1,6 @@
 """ Pong game """
 
 from turtle import Screen
-
 from ball import Ball
 from paddle import Paddle
 import time

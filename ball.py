@@ -10,8 +10,8 @@ class Ball(Turtle):
         self.penup()
         self.goto(0, 0)
         self.speed('fastest')
-        self.dx = 3
-        self.dy = 3
+        self.dx = 10
+        self.dy = 10
         self.move_speed = 0.1
         self.move_speed_increase = 0.0001
         self.move_speed_decrease = 0.0001
