@@ -60,23 +60,32 @@ class PongGame:
         if self.ball.ycor() > 280 or self.ball.ycor() < -280:
             self.ball.bounce_y()
 
-        # Check for collisions with paddles
-        if self.ball.distance(self.right_paddle) < 50 and self.ball.xcor() > 320:
+        if (self.ball.distance(self.right_paddle) < 50 and
+                320 < self.ball.xcor() < 350):
             self.ball.bounce_x()
             self.score.right_point()
             self.ball.move_speed += self.ball.move_speed_increase
-        elif self.ball.distance(self.left_paddle) < 50 and self.ball.xcor() < -320:
+            #print(f"Hit right paddle: ball position ({self.ball.xcor()}, {self.ball.ycor()})")
+
+
+        elif (self.ball.distance(self.left_paddle) < 50 and
+              -320 > self.ball.xcor() > -350):
             self.ball.bounce_x()
             self.score.left_point()
             self.ball.move_speed += self.ball.move_speed_increase
+            #print(f"Hit left paddle: ball position ({self.ball.xcor()}, {self.ball.ycor()})")
 
         # Check for collisions with left and right walls
-        if self.ball.xcor() > 380 or self.ball.xcor() < -380:
-            self.score.reset_score()
-            self.game_is_on = False
+        if self.ball.xcor() > 380:
+            self.ball.reset_position()
+            self.score.left_point()
+        elif self.ball.xcor() < -380:
+            self.ball.reset_position()
+            self.score.right_point()
 
         # Check if a player has reached the winning score
         if self.score.left_score >= 10 or self.score.right_score >= 10:
+            self.score.print_winner()
             self.game_is_on = False
 
     def end_game(self):
