@@ -1,9 +1,9 @@
 """ Pong Game """
+import time
 from turtle import Screen
 from paddle import Paddle
 from ball import Ball
 from score import Score
-import time
 
 
 class PongGame:
@@ -52,7 +52,8 @@ class PongGame:
 
     def handle_collisions(self):
         """
-        Handle collisions between the ball and the paddles. Also check for collisions with the top and bottom walls.
+        Handle collisions between the ball and the paddles.
+        Also check for collisions with the top and bottom walls.
         :return:
         """
         # Check for collisions with top and bottom walls
@@ -103,4 +104,3 @@ class PongGame:
         while not self.check_game_over():
             self.game_loop()
         self.end_game()
-
