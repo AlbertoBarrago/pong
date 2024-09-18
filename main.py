@@ -11,6 +11,7 @@ SCREEN.bgcolor('black')
 SCREEN.setup(width=800, height=600)
 SCREEN.title('Pong')
 SCREEN.tracer(0)
+GAME_IS_ON = True
 
 # Create paddles
 right_paddle = Paddle((350, 0))
@@ -24,8 +25,7 @@ left_paddle.setup_controls(SCREEN, "w", "s")
 # Create ball
 ball = Ball()
 
-game_is_on = True
-while game_is_on:
+while GAME_IS_ON:
     time.sleep(ball.move_speed)
     SCREEN.update()
     ball.move()
@@ -42,8 +42,10 @@ while game_is_on:
     # Check if ball goes out of bounds
     if ball.xcor() > 380:
         ball.reset_position()
+        GAME_IS_ON = False
     if ball.xcor() < -380:
         ball.reset_position()
+        GAME_IS_ON = False
 
 SCREEN.exitonclick()
 
