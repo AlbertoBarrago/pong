@@ -5,6 +5,8 @@ from ball import Ball
 from paddle import Paddle
 import time
 
+from score import Score
+
 SCREEN = Screen()
 SCREEN.bgcolor('black')
 SCREEN.setup(width=800, height=600)
@@ -23,6 +25,8 @@ left_paddle.setup_controls(SCREEN, "w", "s")
 
 # Create ball
 ball = Ball()
+# Score
+score = Score()
 
 while GAME_IS_ON:
     time.sleep(ball.move_speed)
@@ -34,16 +38,21 @@ while GAME_IS_ON:
         ball.bounce_y()
 
     # Check for collisions with paddles
-    if (ball.distance(right_paddle) < 50 and ball.xcor() > 320) or \
-       (ball.distance(left_paddle) < 50 and ball.xcor() < -320):
+    if ball.distance(right_paddle) < 50 and ball.xcor() > 320:
         ball.bounce_x()
+        score.right_point()
+    elif ball.distance(left_paddle) < 50 and ball.xcor() < -320:
+        ball.bounce_x()
+        score.left_point()
 
-    # Check if ball goes out of bounds
+        # Check if ball goes out of bounds
     if ball.xcor() > 380:
         ball.reset_position()
+        score.print_winner()
         GAME_IS_ON = False
     if ball.xcor() < -380:
         ball.reset_position()
+        score.print_winner()
         GAME_IS_ON = False
 
 SCREEN.exitonclick()
