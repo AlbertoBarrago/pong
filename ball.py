@@ -54,7 +54,4 @@ class Ball(Turtle):
         :return:
         """
         self.goto(0, 0)
-        self.move_speed = 0.1
-        self.move_speed_increase = 0.5
-        self.move_speed_decrease = 0.1
-        self.bounce_x()
+        self.dx *= -1
