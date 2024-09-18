@@ -3,8 +3,7 @@
 ### This is a simple pong game made with python and turtle module.
 
 # Screenshots
-![img.png](img.png)
-
+![screen_1.png](screen_1.png)
 
 ## Controls
 - W - move up (1 player)
