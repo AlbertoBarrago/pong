@@ -13,8 +13,8 @@ class Ball(Turtle):
         self.dx = 3
         self.dy = 3
         self.move_speed = 0.1
-        self.move_speed_increase = 0.5
-        self.move_speed_decrease = 0.1
+        self.move_speed_increase = 0.0001
+        self.move_speed_decrease = 0.0001
 
     def move(self):
         new_x = self.xcor() + self.dx
