@@ -13,6 +13,12 @@
 - space - pause (not yet implemented)
 - q - quit (not yet implemented)
 
+
+## TODOs
+
+- [x] add pause
+- [ ] add quit
+
 ## How to run
 
 - clone the repo
