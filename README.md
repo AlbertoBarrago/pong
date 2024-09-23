@@ -17,7 +17,7 @@
 ## TODOs
 
 - [x] add pause
-- [ ] add quit
+- [x] add quit
 
 ## How to run
 

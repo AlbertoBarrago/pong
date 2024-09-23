@@ -41,6 +41,7 @@ class PongGame:
         self.right_paddle.setup_controls(self.screen, "Up", "Down")
         self.left_paddle.setup_controls(self.screen, "w", "s")
         self.screen.onkeypress(self.toggle_pause, "p")
+        self.screen.onkeypress(self.quit_game, "q")
 
     def display_pause_screen(self):
         """
@@ -134,6 +135,10 @@ class PongGame:
         if not self.paused and self.pause_text:
             self.pause_text.clear()
 
+    def quit_game(self):
+        self.game_is_on = False
+        self.screen.bye()
+
     def run(self):
         """
         Run the game.
@@ -141,6 +146,6 @@ class PongGame:
         """
         # Run the game
         self.setup_game()
-        while not self.check_game_over():
+        while self.game_is_on:
             self.game_loop()
-        self.end_game()
+        self.screen.bye()
