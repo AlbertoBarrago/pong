@@ -1,9 +1,10 @@
 """ Pong Game """
 import time
-from turtle import Screen
+from turtle import Screen, Turtle
 from paddle import Paddle
 from ball import Ball
 from score import Score
+
 
 
 class PongGame:
@@ -27,6 +28,8 @@ class PongGame:
         self.left_paddle = Paddle((-350, 0))
         self.ball = Ball()
         self.score = Score()
+        self.paused = False
+        self.pause_text = None
 
     def setup_game(self):
         """
@@ -37,6 +40,21 @@ class PongGame:
         self.screen.listen()
         self.right_paddle.setup_controls(self.screen, "Up", "Down")
         self.left_paddle.setup_controls(self.screen, "w", "s")
+        self.screen.onkeypress(self.toggle_pause, "p")
+
+    def display_pause_screen(self):
+        """
+        Display the pause screen.
+        :return:
+        """
+        if not self.pause_text:
+            self.pause_text = Turtle()
+            self.pause_text.hideturtle()
+            self.pause_text.color("white")
+            self.pause_text.penup()
+            self.pause_text.goto(0, 0)
+        self.pause_text.clear()
+        self.pause_text.write("PAUSED", align="center", font=("Arial", 24, "normal"))
 
     def game_loop(self):
         """
@@ -45,10 +63,14 @@ class PongGame:
         """
         # Main game loop
         while self.game_is_on:
-            time.sleep(self.ball.move_speed)
-            self.screen.update()
-            self.ball.move()
-            self.handle_collisions()
+            if not self.paused:
+                time.sleep(self.ball.move_speed)
+                self.screen.update()
+                self.ball.move()
+                self.handle_collisions()
+            else:
+                self.display_pause_screen()
+                self.screen.update()
 
     def handle_collisions(self):
         """
@@ -102,6 +124,15 @@ class PongGame:
         :return:
         """
         return not self.game_is_on
+
+    def toggle_pause(self):
+        """
+        Toggle the pause state of the game.
+        :return:
+        """
+        self.paused = not self.paused
+        if not self.paused and self.pause_text:
+            self.pause_text.clear()
 
     def run(self):
         """
