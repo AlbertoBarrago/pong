@@ -2,7 +2,7 @@
 
 ### This is a simple pong game made with python and turtle module.
 
-# Screenshots
+# Screenshot
 ![screen_1.png](screen_1.png)
 
 ## Controls
@@ -12,6 +12,12 @@
 - down arrow - move down (2 player)
 - space - pause (not yet implemented)
 - q - quit (not yet implemented)
+
+
+## TODOs
+
+- [x] add pause
+- [x] add quit
 
 ## How to run
 
